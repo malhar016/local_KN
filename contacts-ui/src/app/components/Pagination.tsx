@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { Col, Row } from "react-bootstrap";
 
 type PaginationProps = {
   range: number;
@@ -13,14 +13,14 @@ export const Pagination = (props: PaginationProps) => {
   const isFirst = current === 0;
   const isLast = current === range - 1;
   return (
-    <div className="pagination-fixed">
-      <button disabled={isFirst} onClick={() => triggerChange({type: 'prev'})} className="mybtn pagebtn">Prev</button>
+    <Row className="justify-content-between pagination-fixed">
+      <Col><button disabled={isFirst} onClick={() => triggerChange({type: 'prev'})} className="mybtn pagebtn">Prev</button></Col>
       {pageButtons.map((pageNo) => {
           const isSelected = pageNo === current ? "btnSelected": "";
-          return <button key={pageNo} onClick={() => triggerChange({type: 'goto', payload: pageNo})}  className={`mybtn pagebtn ${isSelected}`}>{pageNo + 1}</button>
+          return <Col><button key={pageNo} onClick={() => triggerChange({type: 'goto', payload: pageNo})}  className={`mybtn pagebtn ${isSelected}`}>{pageNo + 1}</button></Col>
         })}
-      <button disabled={isLast} onClick={() => triggerChange({type: 'next'})} className="mybtn pagebtn">Next</button>
-    </div>
+      <Col><button disabled={isLast} onClick={() => triggerChange({type: 'next'})} className="mybtn pagebtn">Next</button></Col>
+    </Row>
   );
 };
 

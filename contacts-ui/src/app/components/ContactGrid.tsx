@@ -91,13 +91,11 @@ export const ContactGrid = (props: GridProps) => {
           </Col>
         ))}
       </Row>
-      <Row className="justify-content-between">
-        <Pagination 
-          range={Math.ceil(filteredContacts.length/itemsPerPage)}
-          current={Math.floor(state.startIndex/itemsPerPage)}
-          triggerChange={dispatch}
-        ></Pagination>
-      </Row>
+      <Pagination 
+        range={Math.ceil(filteredContacts.length/itemsPerPage)}
+        current={Math.floor(state.startIndex/itemsPerPage)}
+        triggerChange={dispatch}
+      ></Pagination>
     </div>
   );
 };
