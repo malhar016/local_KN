@@ -5,7 +5,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import { Container, Spinner } from "react-bootstrap";
 import { ContactGrid } from "./app/components/ContactGrid";
 import { api } from "./app/rest_client/axios-apis";
-// import { dummyContacts } from "./app/models/dummy-contacts";
+import { dummyContacts } from "./app/models/dummy-contacts";
 
 function App() {
   const [contactList, setContactList] = useState([]);
@@ -13,7 +13,9 @@ function App() {
   useEffect(() => {
     api.get("/all").then(({data}) => {
       setContactList(data.customerContacts);
-    });
+    }).catch((error) => {
+      console.log(error);
+      setContactList(dummyContacts as any)});
   }, []);
 
   const [itemsPerPage, setItemsPerPage] = useState(12);
