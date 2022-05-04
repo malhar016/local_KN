@@ -8,7 +8,6 @@ type GridProps = {
   contactList: ContactInfo[];
   itemsPerPage: number;
   itemAlignClass: string;
-  footerClass: string;
 };
 
 type GridState = {
@@ -23,7 +22,7 @@ type GridAction = {
 }
 
 export const ContactGrid = (props: GridProps) => {
-  const { contactList, itemsPerPage, itemAlignClass, footerClass } = props;
+  const { contactList, itemsPerPage, itemAlignClass } = props;
   const [filteredContacts, setFilteredContacts] = useState(contactList);
   
   const initialState: GridState = {
@@ -77,7 +76,7 @@ export const ContactGrid = (props: GridProps) => {
 
   return (
     <div>
-      <Row className="justify-content-between">
+      <Row className="justify-content-between mb-1">
         <Col lg={6}><h2>Customer Contact Information</h2></Col>
         <Col className="align-self-center" lg={4}>
           <label className="txt-lbl">Search By:</label>
@@ -92,12 +91,11 @@ export const ContactGrid = (props: GridProps) => {
           </Col>
         ))}
       </Row>
-      <Row>
+      <Row className="justify-content-between">
         <Pagination 
           range={Math.ceil(filteredContacts.length/itemsPerPage)}
           current={Math.floor(state.startIndex/itemsPerPage)}
           triggerChange={dispatch}
-          footerClass={footerClass}
         ></Pagination>
       </Row>
     </div>

@@ -4,17 +4,16 @@ type PaginationProps = {
   range: number;
   current: number;
   triggerChange: any;
-  footerClass: string;
 };
 export const Pagination = (props: PaginationProps) => {
-  const {range, current, triggerChange, footerClass} = props;
+  const {range, current, triggerChange} = props;
   const start = Math.floor(current/3)*3;
   const visibleRange = Math.min(range, 3);
   const pageButtons: number[] = new Array(visibleRange).fill(0).map((x, id) => start + id);
   const isFirst = current === 0;
   const isLast = current === range - 1;
   return (
-    <div className={footerClass}>
+    <div className="pagination-fixed">
       <button disabled={isFirst} onClick={() => triggerChange({type: 'prev'})} className="mybtn pagebtn">Prev</button>
       {pageButtons.map((pageNo) => {
           const isSelected = pageNo === current ? "btnSelected": "";

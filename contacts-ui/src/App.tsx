@@ -20,16 +20,13 @@ function App() {
 
   const [itemsPerPage, setItemsPerPage] = useState(12);
   const [itemAlignClass, setItemAlighClass] = useState("justify-content-right");
-  const [footerClass, setFooterClass] = useState("pagination-fixed");
 
   const handleWindowResize = () => {
     const {innerWidth : windowSize} = window;
     setItemAlighClass("justify-content-left");
-    setFooterClass("pagination-fixed");
     if(windowSize < 576){
       setItemsPerPage(2);
       setItemAlighClass("justify-content-center");
-      setFooterClass("pagination-relative");
     } else if(windowSize < 992){
       setItemsPerPage(6);
     } else {
@@ -54,7 +51,6 @@ function App() {
             contactList={contactList} 
             itemsPerPage={itemsPerPage}
             itemAlignClass={itemAlignClass}
-            footerClass={footerClass}
             ></ContactGrid>:
           <Spinner animation="border" variant="primary"></Spinner>}
         </Container>
