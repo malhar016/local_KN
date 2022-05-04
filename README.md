@@ -36,6 +36,11 @@
 ![iphone-gif](./demo/iPhone.gif)
 <hr>
 
+*Customer search functionality allows to search customer by firstName or middleName or lastName, it filters only matching custoers and hides others - this functionality was added later so might not be visible in previous screens*
+
+![search-gif](./demo/search.gif)
+<hr>
+
 *This is a working full-stack application where UI is making REST calls to back-end and getting stored data in JSON format to render back. Below is the screen captured from chrome/network tab and GET call made through browser*
 
 ![network-gif](./demo/network_calls.gif)
