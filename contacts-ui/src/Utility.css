@@ -60,13 +60,28 @@
 }
 
 .pagination-fixed {
-    position:fixed;
-    width:100%;
-    bottom:0.3rem;
+    position: fixed;
+    width: 100%;
+    bottom: 0.8rem;
 }
 
 .pagination-relative {
-    position:relative;
-    width:100%;
-    bottom:1rem;
+    position: relative;
+    width: 100%;
+    bottom: 1rem;
+}
+
+.txt-lbl {
+    font-size: 1.2rem;
+    font-weight: 700;
+    padding-right: 0.8rem;
+    color: blue;
+}
+
+.txt-ip {
+    border: 0;
+    border-bottom: 1px solid #2d80ec;
+    width: 70%;
+    padding: 0.2rem;
+    font-size: 1.2rem;
 }
