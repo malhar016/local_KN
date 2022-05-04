@@ -24,6 +24,7 @@ type GridAction = {
 
 export const ContactGrid = (props: GridProps) => {
   const { contactList, itemsPerPage, itemAlignClass, footerClass } = props;
+  const [filteredContacts, setFilteredContacts] = useState(contactList);
   
   const initialState: GridState = {
     startIndex: 0,
@@ -55,19 +56,35 @@ export const ContactGrid = (props: GridProps) => {
   }
 
   const [state, dispatch] = useReducer(gridReducer, initialState);
-  const [visibleItems, setVisibleItems] = useState(contactList.slice(state.startIndex, state.endIndex));
+  const [visibleItems, setVisibleItems] = useState(filteredContacts.slice(state.startIndex, state.endIndex));
   useEffect(() => {
-    setVisibleItems(contactList.slice(state.startIndex, state.endIndex));
-  }, [state.startIndex, state.endIndex, contactList]);
+    setVisibleItems(filteredContacts.slice(state.startIndex, state.endIndex));
+  }, [state.startIndex, state.endIndex, filteredContacts.length, filteredContacts]);
 
   useEffect(() => {
     dispatch({type: 'resize', payload: itemsPerPage});
     dispatch({type: 'goto', payload: 0});
   }, [itemsPerPage]);
-  
+
+  const filterContacts = (searchStr = "") => {
+    setFilteredContacts(contactList.filter(contact => {
+      let { name } = contact;
+      let words = name.toLocaleLowerCase().split(" ");
+      return words.some(word => word.startsWith(searchStr.toLocaleLowerCase()));
+      })
+      );
+  }
+
   return (
     <div>
-      <h2 style={{ textAlign: "center" }}>Customer Contact Information</h2>
+      <Row className="justify-content-between">
+        <Col lg={6}><h2>Customer Contact Information</h2></Col>
+        <Col className="align-self-center" lg={4}>
+          <label className="txt-lbl">Search By:</label>
+          <input className="txt-ip" placeholder="FirstName or LastName" onChange={(e) => filterContacts(e.currentTarget.value)} type="text"/>
+        </Col>
+     
+      </Row>
       <Row className={itemAlignClass}>
         {visibleItems.map((contact: ContactInfo, idx) => (
           <Col key={contact.name + idx} xs={8} md={6} lg={3}>
@@ -77,7 +94,7 @@ export const ContactGrid = (props: GridProps) => {
       </Row>
       <Row>
         <Pagination 
-          range={Math.ceil(contactList.length/itemsPerPage)}
+          range={Math.ceil(filteredContacts.length/itemsPerPage)}
           current={Math.floor(state.startIndex/itemsPerPage)}
           triggerChange={dispatch}
           footerClass={footerClass}
