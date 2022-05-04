@@ -1,0 +1,72 @@
+.container {
+    max-width: 1100px;
+    margin: 0 auto;
+    overflow: auto;
+    padding: 0 40px;
+}
+
+.card {
+    color: #333;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+    padding: 0.8rem;
+    margin: 0.3rem;
+    text-align: center;
+}
+
+.card img {
+    align-self: center;
+    height: 10rem;
+}
+
+.card span {
+    margin: 0.5rem 0;
+}
+
+.mybtn {
+    display: inline-block;
+    padding: 0.8rem;
+    cursor: pointer;
+    background: var(--primary-color);
+    color: white;
+    border: none;
+    border-radius: 5px;
+}
+
+.mybtn:hover {
+    transform: scale(0.98);
+}
+
+.pagebtn {
+    margin: 0.8rem 0.4rem;
+    color: black;
+    font-weight: 400;
+}
+
+.pagebtn:disabled {
+    background: lightslategrey;
+}
+
+.btnSelected {
+    background: var(--secondary-color);
+    color: gray;
+    font-weight: 700;
+}
+
+.mybtn-outline {
+    background-color: transparent;
+    border: 1px white solid;
+}
+
+.pagination-fixed {
+    position:fixed;
+    width:100%;
+    bottom:0.3rem;
+}
+
+.pagination-relative {
+    position:relative;
+    width:100%;
+    bottom:1rem;
+}
